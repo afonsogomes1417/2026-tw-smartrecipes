@@ -1,1 +1,45 @@
-<p>search works!</p>
+<div class="search-container">
+  <div class="search-hero">
+    <h1>Pesquisar Receitas</h1>
+    <p>Encontra a receita perfeita para hoje</p>
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Ex: pasta, chicken, cake..."
+        [(ngModel)]="searchTerm"
+        (keyup.enter)="search()"
+      />
+      <button (click)="search()">Pesquisar</button>
+    </div>
+  </div>
+
+  @if (isLoading) {
+    <div class="loading">
+      <p>A pesquisar receitas...</p>
+    </div>
+  }
+
+  @if (!isLoading && searched && meals.length === 0) {
+    <div class="no-results">
+      <p>Nenhuma receita encontrada para "{{ searchTerm }}"</p>
+    </div>
+  }
+
+  @if (!isLoading && meals.length > 0) {
+    <div class="results-section">
+      <h2>{{ meals.length }} receitas encontradas</h2>
+      <div class="meals-grid">
+        @for (meal of meals; track meal.idMeal) {
+          <div class="meal-card" (click)="goToDetail(meal.idMeal)">
+            <img [src]="meal.strMealThumb" [alt]="meal.strMeal" />
+            <div class="meal-info">
+              <h3>{{ meal.strMeal }}</h3>
+              <span class="category">{{ meal.strCategory }}</span>
+              <span class="area">{{ meal.strArea }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

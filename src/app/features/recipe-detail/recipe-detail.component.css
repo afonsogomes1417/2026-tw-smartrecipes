@@ -1,0 +1,154 @@
+.detail-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  padding: 40px 24px;
+}
+
+.loading {
+  text-align: center;
+  color: #cbd5e1;
+  padding: 60px;
+  font-size: 1.1rem;
+}
+
+.btn-back {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  margin-bottom: 32px;
+  transition: background 0.2s ease;
+}
+
+.btn-back:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.meal-header {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 40px;
+  align-items: flex-start;
+}
+
+.meal-header img {
+  width: 320px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+.meal-header-info h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.tags {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.category, .area {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.category {
+  background: rgba(220, 38, 38, 0.2);
+  color: #f87171;
+}
+
+.area {
+  background: rgba(124, 58, 237, 0.2);
+  color: #a78bfa;
+}
+
+.btn-youtube {
+  display: inline-block;
+  padding: 12px 24px;
+  background: #dc2626;
+  color: white;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+
+.btn-youtube:hover {
+  transform: translateY(-2px);
+}
+
+.sections {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 32px;
+}
+
+.ingredients-section, .instructions-section {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 24px;
+}
+
+.ingredients-section h2, .instructions-section h2 {
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.ingredients-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ingredients-section li {
+  display: flex;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+}
+
+.measure {
+  color: #f87171;
+  font-weight: 600;
+  min-width: 80px;
+}
+
+.ingredient {
+  color: #ffffff;
+}
+
+.instructions-section p {
+  color: #cbd5e1;
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+@media (max-width: 768px) {
+  .meal-header {
+    flex-direction: column;
+  }
+
+  .meal-header img {
+    width: 100%;
+    height: 220px;
+  }
+
+  .sections {
+    grid-template-columns: 1fr;
+  }
+}
