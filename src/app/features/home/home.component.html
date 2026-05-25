@@ -1,0 +1,36 @@
+<div class="home-container">
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>🍳 SmartRecipes</h1>
+    <p>Descobre receitas deliciosas de todo o mundo</p>
+    <button class="btn-search" (click)="goToSearch()">
+      Pesquisar Receitas
+    </button>
+  </div>
+
+  <!-- Receitas Aleatórias -->
+  <div class="section">
+    <h2>Receitas em Destaque</h2>
+
+    @if (isLoading) {
+      <div class="loading">
+        <p>A carregar receitas...</p>
+      </div>
+    } @else {
+      <div class="meals-grid">
+        @for (meal of randomMeals; track meal.idMeal) {
+          <div class="meal-card" (click)="goToDetail(meal.idMeal)">
+            <img [src]="meal.strMealThumb" [alt]="meal.strMeal" />
+            <div class="meal-info">
+              <h3>{{ meal.strMeal }}</h3>
+              <span class="category">{{ meal.strCategory }}</span>
+              <span class="area">{{ meal.strArea }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+</div>
