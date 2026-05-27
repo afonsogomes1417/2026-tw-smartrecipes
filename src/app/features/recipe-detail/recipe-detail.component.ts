@@ -15,6 +15,7 @@ export class RecipeDetailComponent implements OnInit {
   meal: Meal | null = null;
   isLoading = true;
   ingredients: { name: string; measure: string }[] = [];
+  isFavorite = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +30,7 @@ export class RecipeDetailComponent implements OnInit {
         if (res.meals) {
           this.meal = res.meals[0];
           this.extractIngredients();
+          this.checkFavorite();
         }
         this.isLoading = false;
       });
@@ -44,6 +46,34 @@ export class RecipeDetailComponent implements OnInit {
         this.ingredients.push({ name: ingredient, measure: measure || '' });
       }
     }
+  }
+
+  checkFavorite() {
+    const saved = localStorage.getItem('smartrecipes-favorites');
+    const favorites = saved ? JSON.parse(saved) : [];
+    this.isFavorite = favorites.some((f: any) => f.idMeal === this.meal?.idMeal);
+  }
+
+  toggleFavorite() {
+    if (!this.meal) return;
+    const saved = localStorage.getItem('smartrecipes-favorites');
+    let favorites = saved ? JSON.parse(saved) : [];
+
+    if (this.isFavorite) {
+      favorites = favorites.filter((f: any) => f.idMeal !== this.meal?.idMeal);
+      this.isFavorite = false;
+    } else {
+      favorites.push({
+        idMeal: this.meal.idMeal,
+        strMeal: this.meal.strMeal,
+        strMealThumb: this.meal.strMealThumb,
+        strCategory: this.meal.strCategory,
+        strArea: this.meal.strArea
+      });
+      this.isFavorite = true;
+    }
+
+    localStorage.setItem('smartrecipes-favorites', JSON.stringify(favorites));
   }
 
   goBack() {

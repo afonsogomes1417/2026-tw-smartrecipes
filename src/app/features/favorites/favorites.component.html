@@ -1,1 +1,37 @@
-<p>favorites works!</p>
+<div class="favorites-container">
+  <div class="favorites-hero">
+    <h1>❤️ Os Meus Favoritos</h1>
+    <p>As tuas receitas guardadas</p>
+  </div>
+
+  @if (favorites.length === 0) {
+    <div class="empty-state">
+      <p>🍽️ Ainda não tens receitas favoritas.</p>
+      <small>Pesquisa receitas e adiciona-as aos favoritos!</small>
+    </div>
+  }
+
+  @if (favorites.length > 0) {
+    <div class="meals-grid">
+      @for (meal of favorites; track meal.idMeal) {
+        <div class="meal-card">
+          <img
+            [src]="meal.strMealThumb"
+            [alt]="meal.strMeal"
+            (click)="goToDetail(meal.idMeal)"
+          />
+          <div class="meal-info">
+            <h3 (click)="goToDetail(meal.idMeal)">{{ meal.strMeal }}</h3>
+            <div class="tags">
+              <span class="category">{{ meal.strCategory }}</span>
+              <span class="area">{{ meal.strArea }}</span>
+            </div>
+            <button class="btn-remove" (click)="removeFavorite(meal.idMeal)">
+              ✕ Remover
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
