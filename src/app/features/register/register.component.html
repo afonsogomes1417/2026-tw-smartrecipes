@@ -1,1 +1,53 @@
-<p>register works!</p>
+<div class="auth-container">
+  <div class="auth-card">
+    <h1>🍳 Criar Conta</h1>
+    <p>Junta-te ao SmartRecipes</p>
+
+    @if (errorMessage) {
+      <div class="error-message">{{ errorMessage }}</div>
+    }
+
+    <div class="form-group">
+      <label>Nome</label>
+      <input
+        type="text"
+        placeholder="O teu nome"
+        [(ngModel)]="name"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        type="email"
+        placeholder="o-teu-email@exemplo.com"
+        [(ngModel)]="email"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Password</label>
+      <input
+        type="password"
+        placeholder="Mínimo 6 caracteres"
+        [(ngModel)]="password"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Confirmar Password</label>
+      <input
+        type="password"
+        placeholder="Repete a password"
+        [(ngModel)]="confirmPassword"
+      />
+    </div>
+
+    <button class="btn-primary" (click)="register()">Criar Conta</button>
+
+    <p class="auth-link">
+      Já tens conta?
+      <a routerLink="/login">Entra aqui</a>
+    </p>
+  </div>
+</div>
