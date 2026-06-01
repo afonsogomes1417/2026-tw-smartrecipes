@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-
-export interface FavoriteMeal {
-  idMeal: string;
-  strMeal: string;
-  strMealThumb: string;
-  strCategory: string;
-  strArea: string;
-}
+import { FavoritesService, FavoriteMeal } from '../../core/services/favorites.service';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-favorites',
@@ -19,21 +13,40 @@ export interface FavoriteMeal {
 })
 export class FavoritesComponent implements OnInit {
   favorites: FavoriteMeal[] = [];
+  isLoading = true;
 
-  constructor(private router: Router) {}
+  constructor(
+    private favoritesService: FavoritesService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+      return;
+    }
     this.loadFavorites();
   }
 
   loadFavorites() {
-    const saved = localStorage.getItem('smartrecipes-favorites');
-    this.favorites = saved ? JSON.parse(saved) : [];
+    this.favoritesService.getFavorites().subscribe({
+      next: (res) => {
+        this.favorites = res.favorites;
+        this.isLoading = false;
+      },
+      error: () => {
+        this.isLoading = false;
+      }
+    });
   }
 
-  removeFavorite(id: string) {
-    this.favorites = this.favorites.filter(f => f.idMeal !== id);
-    localStorage.setItem('smartrecipes-favorites', JSON.stringify(this.favorites));
+  removeFavorite(mealId: string) {
+    this.favoritesService.removeFavorite(mealId).subscribe({
+      next: () => {
+        this.favorites = this.favorites.filter(f => f.meal_id !== mealId);
+      }
+    });
   }
 
   goToDetail(id: string) {

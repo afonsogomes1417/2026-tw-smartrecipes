@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MealService } from '../../core/services/meal.service';
+import { FavoritesService } from '../../core/services/favorites.service';
+import { AuthService } from '../../core/services/auth.service';
 import { Meal } from '../../core/models/meal.model';
 
 @Component({
@@ -16,11 +18,14 @@ export class RecipeDetailComponent implements OnInit {
   isLoading = true;
   ingredients: { name: string; measure: string }[] = [];
   isFavorite = false;
+  favoriteMessage = '';
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private mealService: MealService
+    private mealService: MealService,
+    private favoritesService: FavoritesService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -49,31 +54,42 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   checkFavorite() {
-    const saved = localStorage.getItem('smartrecipes-favorites');
-    const favorites = saved ? JSON.parse(saved) : [];
-    this.isFavorite = favorites.some((f: any) => f.idMeal === this.meal?.idMeal);
+    if (!this.authService.isLoggedIn()) return;
+    this.favoritesService.getFavorites().subscribe(res => {
+      this.isFavorite = res.favorites.some(f => f.meal_id === this.meal?.idMeal);
+    });
   }
 
   toggleFavorite() {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+      return;
+    }
     if (!this.meal) return;
-    const saved = localStorage.getItem('smartrecipes-favorites');
-    let favorites = saved ? JSON.parse(saved) : [];
 
     if (this.isFavorite) {
-      favorites = favorites.filter((f: any) => f.idMeal !== this.meal?.idMeal);
-      this.isFavorite = false;
-    } else {
-      favorites.push({
-        idMeal: this.meal.idMeal,
-        strMeal: this.meal.strMeal,
-        strMealThumb: this.meal.strMealThumb,
-        strCategory: this.meal.strCategory,
-        strArea: this.meal.strArea
+      this.favoritesService.removeFavorite(this.meal.idMeal).subscribe({
+        next: () => {
+          this.isFavorite = false;
+          this.favoriteMessage = 'Removido dos favoritos.';
+          setTimeout(() => this.favoriteMessage = '', 2500);
+        }
       });
-      this.isFavorite = true;
+    } else {
+      this.favoritesService.addFavorite({
+        meal_id: this.meal.idMeal,
+        meal_name: this.meal.strMeal,
+        meal_thumb: this.meal.strMealThumb,
+        meal_category: this.meal.strCategory,
+        meal_area: this.meal.strArea
+      }).subscribe({
+        next: () => {
+          this.isFavorite = true;
+          this.favoriteMessage = 'Adicionado aos favoritos!';
+          setTimeout(() => this.favoriteMessage = '', 2500);
+        }
+      });
     }
-
-    localStorage.setItem('smartrecipes-favorites', JSON.stringify(favorites));
   }
 
   goBack() {

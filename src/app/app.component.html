@@ -3,8 +3,15 @@
   <div class="nav-links">
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
     <a routerLink="/search" routerLinkActive="active">Pesquisar</a>
-    <a routerLink="/favorites" routerLinkActive="active">Favoritos</a>
-    <a routerLink="/login" routerLinkActive="active">Login</a>
+    @if (isLoggedIn) {
+      <a routerLink="/favorites" routerLinkActive="active">Favoritos</a>
+      <span class="nav-user">👤 {{ user?.name }}</span>
+      <button class="btn-logout" (click)="logout()">Logout</button>
+    } @else {
+      <a routerLink="/favorites" routerLinkActive="active">Favoritos</a>
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+      <a routerLink="/register" routerLinkActive="active">Registar</a>
+    }
   </div>
 </nav>
 

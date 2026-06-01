@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -16,8 +17,9 @@ export class RegisterComponent {
   password = '';
   confirmPassword = '';
   errorMessage = '';
+  isLoading = false;
 
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   register() {
     if (!this.name || !this.email || !this.password || !this.confirmPassword) {
@@ -32,7 +34,18 @@ export class RegisterComponent {
       this.errorMessage = 'A password deve ter pelo menos 6 caracteres.';
       return;
     }
-    // Quando o backend estiver pronto ligamos aqui
-    this.router.navigate(['/login']);
+
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    this.authService.register({ name: this.name, email: this.email, password: this.password }).subscribe({
+      next: () => {
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        this.errorMessage = err.error?.message || 'Erro ao criar conta.';
+        this.isLoading = false;
+      }
+    });
   }
 }

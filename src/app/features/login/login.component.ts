@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,14 +15,28 @@ export class LoginComponent {
   email = '';
   password = '';
   errorMessage = '';
+  isLoading = false;
 
-  constructor(private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   login() {
     if (!this.email || !this.password) {
       this.errorMessage = 'Preenche todos os campos.';
       return;
     }
-    this.router.navigate(['/']);
+
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    this.authService.login({ email: this.email, password: this.password }).subscribe({
+      next: (response) => {
+        this.authService.saveToken(response.token, response.user);
+        this.router.navigate(['/']);
+      },
+      error: (err) => {
+        this.errorMessage = err.error?.message || 'Erro ao fazer login.';
+        this.isLoading = false;
+      }
+    });
   }
 }

@@ -11,6 +11,10 @@
 
       <button class="btn-back" (click)="goBack()">← Voltar</button>
 
+      @if (favoriteMessage) {
+        <div class="favorite-message">{{ favoriteMessage }}</div>
+      }
+
       <div class="meal-header">
         <img [src]="meal.strMealThumb" [alt]="meal.strMeal" />
         <div class="meal-header-info">

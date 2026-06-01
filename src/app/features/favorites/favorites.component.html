@@ -4,29 +4,35 @@
     <p>As tuas receitas guardadas</p>
   </div>
 
-  @if (favorites.length === 0) {
+  @if (isLoading) {
+    <div class="empty-state">
+      <p>A carregar favoritos...</p>
+    </div>
+  }
+
+  @if (!isLoading && favorites.length === 0) {
     <div class="empty-state">
       <p>🍽️ Ainda não tens receitas favoritas.</p>
       <small>Pesquisa receitas e adiciona-as aos favoritos!</small>
     </div>
   }
 
-  @if (favorites.length > 0) {
+  @if (!isLoading && favorites.length > 0) {
     <div class="meals-grid">
-      @for (meal of favorites; track meal.idMeal) {
+      @for (meal of favorites; track meal.meal_id) {
         <div class="meal-card">
           <img
-            [src]="meal.strMealThumb"
-            [alt]="meal.strMeal"
-            (click)="goToDetail(meal.idMeal)"
+            [src]="meal.meal_thumb"
+            [alt]="meal.meal_name"
+            (click)="goToDetail(meal.meal_id)"
           />
           <div class="meal-info">
-            <h3 (click)="goToDetail(meal.idMeal)">{{ meal.strMeal }}</h3>
+            <h3 (click)="goToDetail(meal.meal_id)">{{ meal.meal_name }}</h3>
             <div class="tags">
-              <span class="category">{{ meal.strCategory }}</span>
-              <span class="area">{{ meal.strArea }}</span>
+              <span class="category">{{ meal.meal_category }}</span>
+              <span class="area">{{ meal.meal_area }}</span>
             </div>
-            <button class="btn-remove" (click)="removeFavorite(meal.idMeal)">
+            <button class="btn-remove" (click)="removeFavorite(meal.meal_id)">
               ✕ Remover
             </button>
           </div>
