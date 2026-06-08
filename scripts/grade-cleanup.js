@@ -1,25 +1,39 @@
 const fs = require("fs");
 const path = require("path");
 
-const root = path.resolve(__dirname, "..");
+// Diretório raiz do projeto
+const projectRoot = path.resolve(__dirname, "..");
 
-const patterns = [
+// Padrões dos relatórios a remover
+const reportPatterns = [
   /^grade-report-test-grupo\d+\.html$/,
   /^grade-report-mini\.html$/,
 ];
 
-const files = fs
-  .readdirSync(root)
-  .filter((name) => patterns.some((re) => re.test(name)));
+try {
+  const filesToDelete = fs
+    .readdirSync(projectRoot)
+    .filter(file =>
+      reportPatterns.some(pattern => pattern.test(file))
+    );
 
-if (files.length === 0) {
-  console.log("Nothing to clean up.");
-  process.exit(0);
+  if (filesToDelete.length === 0) {
+    console.log("Nenhum ficheiro encontrado para remoção.");
+    process.exit(0);
+  }
+
+  for (const file of filesToDelete) {
+    const filePath = path.join(projectRoot, file);
+
+    if (fs.existsSync(filePath)) {
+      fs.rmSync(filePath, { force: true });
+      console.log(`✓ Removido: ${file}`);
+    }
+  }
+
+  console.log(`\nLimpeza concluída. ${filesToDelete.length} ficheiro(s) removido(s).`);
+
+} catch (error) {
+  console.error("Erro durante a limpeza:", error.message);
+  process.exit(1);
 }
-
-files.forEach((name) => {
-  fs.rmSync(path.join(root, name));
-  console.log(`Deleted: ${name}`);
-});
-
-console.log("\nCleanup done.");
