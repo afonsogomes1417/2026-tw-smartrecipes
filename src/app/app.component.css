@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #1a1a2e;
+  background: #F5F5DC; /* Fundo Bege para a aplicação */
 }
 
 .navbar {
@@ -14,9 +14,9 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 16px 32px;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: #2D6A4F; /* Fundo Verde Escuro na Navbar */
+  box-shadow: 0 2px 10px rgba(27, 67, 50, 0.15);
+  border-bottom: 1px solid #1B4332;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -25,44 +25,52 @@ body {
 .nav-brand {
   font-size: 1.4rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #F5F5DC; /* Título em Bege para contrastar */
   cursor: pointer;
 }
 
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 24px;
 }
 
 .nav-links a {
-  color: #cbd5e1;
+  color: #D8F3DC; /* Links num verde bem clarinho/pastel */
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
 }
 
+/* Quando passas o rato ou a página está ativa, fica Bege com linha por baixo */
 .nav-links a:hover,
 .nav-links a.active {
-  color: #f87171;
+  color: #F5F5DC;
+  font-weight: 700;
 }
+
 .nav-user {
-  color: #a78bfa;
+  color: #F5F5DC; /* O teu nome em Bege */
   font-weight: 600;
   font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 6px;
 }
 
 .btn-logout {
-  background: rgba(220, 38, 38, 0.2);
-  border: 1px solid rgba(220, 38, 38, 0.4);
-  color: #f87171;
+  background: rgba(254, 215, 215, 0.2);
+  border: 1px solid #f87171;
+  color: #feb2b2;
   padding: 6px 16px;
   border-radius: 20px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .btn-logout:hover {
-  background: rgba(220, 38, 38, 0.35);
+  background: #b91c1c;
+  color: #ffffff;
 }

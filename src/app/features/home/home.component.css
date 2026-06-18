@@ -1,30 +1,32 @@
 .home-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: #F5F5DC; /* Fundo Bege Claro Orgânico */
   padding: 0 0 40px 0;
 }
 
 .hero {
   text-align: center;
   padding: 80px 20px 60px;
-  background: linear-gradient(180deg, rgba(220, 38, 38, 0.15), transparent);
+  /* Um degradê suave que vai do verde escuro da navbar até um tom mais suave */
+  background: linear-gradient(180deg, rgba(45, 106, 79, 0.15), transparent);
 }
 
 .hero h1 {
   font-size: 3rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #2D6A4F; /* Título no nosso Verde Escuro */
   margin-bottom: 16px;
 }
 
 .hero p {
   font-size: 1.2rem;
-  color: #cbd5e1;
+  color: #40916C; /* Subtítulo num Verde Intermédio confortável */
   margin-bottom: 32px;
 }
 
 .btn-search {
-  background: linear-gradient(135deg, #dc2626, #7c3aed);
+  /* Botão principal no Verde de Destaque */
+  background: linear-gradient(135deg, #2D6A4F, #40916C);
   color: white;
   border: none;
   padding: 14px 36px;
@@ -37,7 +39,7 @@
 
 .btn-search:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4);
+  box-shadow: 0 8px 20px rgba(45, 106, 79, 0.3);
 }
 
 .section {
@@ -45,7 +47,7 @@
 }
 
 .section h2 {
-  color: #ffffff;
+  color: #2D6A4F; /* Título das secções em Verde Escuro */
   font-size: 1.8rem;
   font-weight: 700;
   margin-bottom: 24px;
@@ -58,8 +60,8 @@
 }
 
 .meal-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #FFFFFF; /* Cartões das receitas em Branco Limpo */
+  border: 1px solid rgba(45, 106, 79, 0.15); /* Borda fina esverdeada */
   border-radius: 20px;
   overflow: hidden;
   cursor: pointer;
@@ -68,8 +70,8 @@
 
 .meal-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  border-color: rgba(220, 38, 38, 0.4);
+  box-shadow: 0 20px 40px rgba(27, 67, 50, 0.12);
+  border-color: #2D6A4F;
 }
 
 .meal-card img {
@@ -83,7 +85,7 @@
 }
 
 .meal-info h3 {
-  color: #ffffff;
+  color: #1B4332; /* Nome do prato em Verde bem escuro para leitura */
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 8px;
@@ -98,19 +100,20 @@
   margin-right: 6px;
 }
 
+/* Etiquetas/Tags em tons pastel que combinam com o tema */
 .category {
-  background: rgba(220, 38, 38, 0.2);
-  color: #f87171;
+  background: rgba(45, 106, 79, 0.15);
+  color: #2D6A4F;
 }
 
 .area {
-  background: rgba(124, 58, 237, 0.2);
-  color: #a78bfa;
+  background: rgba(64, 145, 108, 0.15);
+  color: #40916C;
 }
 
 .loading {
   text-align: center;
-  color: #cbd5e1;
+  color: #40916C;
   padding: 60px;
   font-size: 1.1rem;
 }

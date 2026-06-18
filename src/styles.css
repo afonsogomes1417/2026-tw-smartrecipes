@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --bg-color: #F5F5DC;       /* Bege Natural */
+  --primary-color: #2D6A4F;  /* Verde Escuro */
+  --secondary-color: #40916C;/* Verde Intermédio */
+  --text-color: #1B4332;     /* Texto Escuro */
+  --card-bg: #FFFFFF;        /* Fundo Branco */
+}
+
+body {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+}
