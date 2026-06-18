@@ -2,15 +2,16 @@
   <div class="nav-brand" routerLink="/">🍳 SmartRecipes</div>
   <div class="nav-links">
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-    <a routerLink="/search" routerLinkActive="active">Pesquisar</a>
+    <a routerLink="/pesquisar" routerLinkActive="active">Pesquisar</a>
+    <a routerLink="/dispensa" routerLinkActive="active" style="color: #9c27b0; font-weight: bold;">✨ A Minha Dispensa</a>
+
     @if (isLoggedIn) {
-      <a routerLink="/favorites" routerLinkActive="active">Favoritos</a>
+      <a routerLink="/favoritos" routerLinkActive="active">Favoritos</a>
       <span class="nav-user">👤 {{ user?.name }}</span>
       <button class="btn-logout" (click)="logout()">Logout</button>
     } @else {
-      <a routerLink="/favorites" routerLinkActive="active">Favoritos</a>
       <a routerLink="/login" routerLinkActive="active">Login</a>
-      <a routerLink="/register" routerLinkActive="active">Registar</a>
+      <a routerLink="/registar" routerLinkActive="active">Registar</a>
     }
   </div>
 </nav>
