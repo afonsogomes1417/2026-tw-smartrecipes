@@ -1,6 +1,6 @@
 .favorites-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: #F5F5DC; /* Fundo Bege Claro Orgânico */
   padding: 40px 24px;
 }
 
@@ -12,29 +12,30 @@
 .favorites-hero h1 {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #2D6A4F; /* Título em Verde Escuro */
   margin-bottom: 12px;
 }
 
 .favorites-hero p {
-  color: #cbd5e1;
+  color: #40916C; /* Subtítulo em Verde Intermédio */
   font-size: 1.1rem;
 }
 
 .empty-state {
   text-align: center;
   padding: 80px 20px;
-  color: #cbd5e1;
+  color: #40916C;
 }
 
 .empty-state p {
   font-size: 1.3rem;
   margin-bottom: 8px;
+  font-weight: 600;
 }
 
 .empty-state small {
   font-size: 1rem;
-  color: #64748b;
+  color: #1B4332;
 }
 
 .meals-grid {
@@ -44,8 +45,8 @@
 }
 
 .meal-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #FFFFFF; /* Cartões em Branco Limpo */
+  border: 1px solid rgba(45, 106, 79, 0.15);
   border-radius: 20px;
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -53,7 +54,8 @@
 
 .meal-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(27, 67, 50, 0.12);
+  border-color: #2D6A4F;
 }
 
 .meal-card img {
@@ -68,7 +70,7 @@
 }
 
 .meal-info h3 {
-  color: #ffffff;
+  color: #1B4332; /* Título do prato em Verde bem escuro */
   font-size: 1rem;
   font-weight: 600;
   margin-bottom: 10px;
@@ -76,7 +78,7 @@
 }
 
 .meal-info h3:hover {
-  color: #f87171;
+  color: #2D6A4F; /* Transição para o Verde ao passar o rato */
 }
 
 .tags {
@@ -94,27 +96,28 @@
 }
 
 .category {
-  background: rgba(220, 38, 38, 0.2);
-  color: #f87171;
+  background: rgba(45, 106, 79, 0.15);
+  color: #2D6A4F;
 }
 
 .area {
-  background: rgba(124, 58, 237, 0.2);
-  color: #a78bfa;
+  background: rgba(64, 145, 108, 0.15);
+  color: #40916C;
 }
 
 .btn-remove {
   width: 100%;
   padding: 8px;
   border-radius: 10px;
-  border: 1px solid rgba(220, 38, 38, 0.3);
-  background: rgba(220, 38, 38, 0.1);
-  color: #f87171;
+  border: 1px solid #f87171;
+  background: rgba(254, 215, 215, 0.3);
+  color: #b91c1c; /* Vermelho escuro para o botão de apagar para contrastar bem */
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .btn-remove:hover {
-  background: rgba(220, 38, 38, 0.25);
+  background: #b91c1c;
+  color: #ffffff;
 }
