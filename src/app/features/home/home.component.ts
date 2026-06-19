@@ -46,6 +46,6 @@ export class HomeComponent implements OnInit {
   }
 
   goToSearch() {
-    this.router.navigate(['/search']);
+    this.router.navigate(['/pesquisar']);
   }
 }
