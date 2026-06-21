@@ -1,10 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
+      providers: [
+        provideRouter(routes),
+        provideHttpClient(),
+      ]
     }).compileComponents();
   });
 
@@ -14,16 +21,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'webtech-final-project-frontend-template' title`, () => {
+  it(`should have the 'SmartRecipes' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('webtech-final-project-frontend-template');
+    expect(app.title).toEqual('SmartRecipes');
   });
 
-  it('should render title', () => {
+  it('should render the navbar brand', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, webtech-final-project-frontend-template');
+    expect(compiled.querySelector('.nav-brand')?.textContent).toContain('SmartRecipes');
   });
 });
