@@ -292,4 +292,3 @@ console.log(
 console.log(`\nHTML report: ${htmlOutputPath}`);
 
 process.exit(0);
-teste
