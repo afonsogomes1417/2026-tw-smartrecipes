@@ -1,78 +1,41 @@
-# Web Technologies Final Project (Frontend)
+### Project Notes
 
-This repository is the official Angular frontend template for the final project.
-Focus on building your application features. The project already includes automated checks for structure, linting, tests, and build.
+## SmartRecipes 🍽️
 
-## Install dependencies
+Aplicação web full-stack para descobrir, guardar e gerir receitas culinárias.
 
+### Grupo
+| Nome | Número de Aluno |
+|------|----------------|
+| Laurindo Gonçalo | 33054 |
+| Abdulai Seidi | XXXXX |
+| Afonso Gomes | XXXXX |
+| Rui Passos | XXXXX |
+
+### Funcionalidades
+- 🔍 Pesquisa de receitas via TheMealDB API
+- ❤️ Guardar receitas favoritas (por utilizador)
+- 🧺 Dispensa inteligente — gere ingredientes em casa
+- 🔐 Autenticação com JWT (login/registo)
+- 📱 Interface responsiva
+
+### Tecnologias
+- **Frontend:** Angular 18
+- **Backend:** NestJS + SQLite
+- **API Externa:** TheMealDB (https://www.themealdb.com)
+- **Autenticação:** JWT + bcrypt
+
+### Como correr o projeto
+
+**Frontend:**
 ```bash
 npm install
-```
-
-## Run the project locally
-
-```bash
 npm start
 ```
 
-Open `http://localhost:4200/` in your browser.
-
-## Quality checks (local)
-
-Run all checks:
-
+**Backend:**
 ```bash
-npm run quality
+cd ../backend-smartrecipes
+npm install
+npm run start:dev
 ```
-
-Teacher grading (score + report):
-
-```bash
-npm run grade
-```
-
-Run individual checks:
-
-```bash
-npm run validate
-npm run lint
-npm run test:ci
-npm run build
-```
-
-What each check does:
-
-- `validate`: ensures the minimum required project structure exists.
-- `lint`: runs Angular ESLint to enforce basic code quality.
-- `test:ci`: runs unit tests once in a headless browser (CI friendly).
-- `build`: builds the Angular app to verify it compiles.
-
-## Files and folders students should not edit
-
-Do not edit:
-
-- .github/workflows/\*\*
-- scripts/\*\*
-- angular.json
-- package.json
-- package-lock.json
-- eslint.config.\*
-- tsconfig\*.json
-
-You can edit:
-
-- src/app/features/\*\*
-- src/app/shared/\*\*
-- src/app/core/services/\*\*
-- src/app/core/models/\*\*
-- PROJECT_INFO.md
-- README.md (only the project-specific sections)
-
-## Project-specific sections to complete
-
-- Fill in [PROJECT_INFO.md](PROJECT_INFO.md) with your group and project details.
-- Add any project notes in this README below.
-
-### Project Notes
-
-Add your project-specific notes here.

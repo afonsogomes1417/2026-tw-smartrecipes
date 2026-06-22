@@ -12,7 +12,7 @@ export interface PantryItem {
 })
 export class PantryService {
   // 👇 Alterado para apontar exatamente para a rota limpa do teu NestJS
-  private readonly apiUrl = 'http://localhost:3000/pantry';
+  private readonly apiUrl = 'http://localhost:3000/api/pantry';
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   private getHeaders() {
